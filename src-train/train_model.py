@@ -33,17 +33,13 @@ def train_model(data, model_path):
     joblib.dump(vectorizer, "../model/vectorizer.pkl")
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
 
-    # Здесь, я предполагаю, что вы хотите использовать RandomForestClassifier
-    # Сделайте корректировки при необходимости
     model = RandomForestClassifier()
     model.fit(X_train, y_train)
 
     y_pred = model.predict(X_test)
 
-    # Выведите отчет о классификации для оценки
     print(classification_report(y_test, y_pred))
 
-    # Save the trained model
     try:
         if not os.path.exists(os.path.dirname(model_path)):
             os.makedirs(os.path.dirname(model_path))
